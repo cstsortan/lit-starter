@@ -9,11 +9,13 @@ class MyApp extends ShadowElement<AppState> {
         name: "Christos",
         counter: 0,
     };
+    
     increment = () => {
         this.setState(prev => ({
             counter:prev.counter + 1,
         }));
     }
+
     render(state: AppState) {
         return html`
             <p>${state.counter}</p>
