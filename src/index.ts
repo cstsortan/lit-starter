@@ -1,9 +1,24 @@
-import { html, render } from 'lit-html';
+import { html } from 'lit-html';
 import { ShadowElement } from './shadow-element';
-class MyApp extends ShadowElement {
-    render() {
+interface AppState {
+    name: string;
+    counter: number;
+}
+class MyApp extends ShadowElement<AppState> {
+    state = {
+        name: "Christos",
+        counter: 0,
+    };
+    increment = () => {
+        this.setState(prev => ({
+            counter:prev.counter + 1,
+        }));
+    }
+    render(state: AppState) {
         return html`
-            <h1>Hello ${name}</h1>
+            <p>${state.counter}</p>
+            <button @click="${this.increment}">Increment</button>
+            <h1>Hello ${state.name}</h1>
         `;
     }
 }
